@@ -89,10 +89,10 @@ function Pagination({
   return (
     <div
       id="pager"
-      className="flex flex-row justify-between max-w-xs w-full xs:px-6 px-0"
+      className="flex flex-row justify-between max-w-xs w-full px-0"
     >
       <button
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 paginationBtn"
+        className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 paginationBtn"
         id="prev"
         onClick={handlePrev}
         aria-disabled={state.disableBtn}
@@ -100,28 +100,28 @@ function Pagination({
         Prev
       </button>
       <button
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 numPaginationBtn"
+        className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 numPaginationBtn"
         id="minbtn"
         onClick={handleClick}
       >
         {state.minPageBtn}
       </button>
       <button
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 numPaginationBtn"
+        className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 numPaginationBtn"
         id="midbtn"
         onClick={handleClick}
       >
         {state.midPageBtn}
       </button>
       <button
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 numPaginationBtn"
+        className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 numPaginationBtn"
         id="maxbtn"
         onClick={handleClick}
       >
         {state.maxPageBtn}
       </button>
       <button
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 paginationBtn"
+        className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 paginationBtn"
         id="next"
         onClick={handleNext}
         aria-disabled={state.disableBtn}
