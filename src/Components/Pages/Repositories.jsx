@@ -44,7 +44,7 @@ function Repositories() {
     );
   });
   return (
-    <div className="flex flex-row justify-between xs:flex-col p-12 xs:items-center">
+    <div className="flex flex-row justify-between xs:flex-col p-12 xs:p-6 xs:items-center">
       <div id="profile" className="w-1/4 xs:w-auto xs:mb-8">
         {loadings ? <Loading type="spin" color="gray" /> : <Profile />}
       </div>

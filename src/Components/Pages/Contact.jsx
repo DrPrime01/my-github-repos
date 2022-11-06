@@ -12,7 +12,6 @@ function Contact() {
         </div>
       </div>
       <form
-        novalidate=""
         className="space-y-6 w-1/2 xs:w-auto"
       >
         <div className="mt-0 xs:mt-0">
