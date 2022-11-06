@@ -16,10 +16,10 @@ function Navbar() {
     toggleNavbar ? setNavBarStyle(navBarstyles.navBarDisplayed) : setNavBarStyle(navBarstyles.navBarHidden);
   }
   return (
-    <nav className="bg-[#060A13] xs:bg-white border-gray-200 px-2 sm:px-4 py-2.5 xs:text-gray-900 dark:bg-gray-900">
+    <nav className="bg-[#060A13] xs:bg-white border-gray-200 px-2 sm:px-4 py-2.5 xs:text-gray-900">
       <div className="flex flex-wrap justify-between items-center px-4 mx-auto">
         <Link to="#" className="flex items-start">
-          <span className="self-center text-4xl font-bold whitespace-nowrap dark:text-primary-700 text-gray-200">
+          <span className="self-center text-4xl font-bold whitespace-nowrap dark:text-primary-700 text-gray-200 xs:text-gray-900">
             Prime
           </span>
         </Link>
