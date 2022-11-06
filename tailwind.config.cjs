@@ -26,6 +26,9 @@ module.exports = {
       backgroundImage: {
         landingPageBg: "url('/src/assets/backgroundImage.png')",
       },
+      spacing: {
+        "45": "45.5rem",
+      }
     },
   },
   plugins: [],

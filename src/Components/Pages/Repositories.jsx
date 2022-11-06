@@ -35,7 +35,7 @@ function Repositories() {
         name={repo.name}
         link={repo.html_url}
         language={repo.language}
-        updated_at={repo.updated_at}
+        created_at={repo.created_at}
         stars={repo.stargazers_count}
         id={repo.id}
         key={repo.id}
@@ -46,11 +46,11 @@ function Repositories() {
   return (
     <div className="flex flex-row justify-between xs:flex-col p-12 xs:items-center">
       <div id="profile" className="w-1/4 xs:w-auto xs:mb-8">
-        {loadings ? <Loading type="spin" color="#be185d" /> : <Profile />}
+        {loadings ? <Loading type="spin" color="gray" /> : <Profile />}
       </div>
       <div id="repo-pagination" className="flex flex-col w-3/5 xs:w-auto xs:items-center">
         <div id="repo" className="mb-5">
-          {repos}
+        {loadings ? <Loading type="spin" color="gray" /> : repos}
         </div>
         <div id="pagination" className="px-4">
           <Pagination
