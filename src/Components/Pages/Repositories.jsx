@@ -7,17 +7,17 @@ import Loading from "../OtherComponents/Loading";
 import { ErrorBoundary, useErrorHandler } from "react-error-boundary";
 
 function Repositories() {
-  let repoURL = `https://api.github.com/users/DrPrime01/repos`;
+  const repo = `https://api.github.com/users/DrPrime01/repos`;
   const handleError = useErrorHandler();
 
   const [currentPage, setCurrentPage] = useState(1);
   const numberOfResults = 5;
-  const maxNumberOfPages = Math.ceil(repoURL.length / numberOfResults);
-  const minNumberOfPages = 1;
   const [repoList, setRepoList] = useState([]);
   const [loadings, setLoadings] = useState(false);
+  const minNumberOfPages = 1;
+  const [maxNumberOfPages, setMaxNumberOfPages] = useState(0);
 
-  repoURL = `https://api.github.com/users/DrPrime01/repos?page=${currentPage}&per_page=${numberOfResults}`;
+  const repoURL = `https://api.github.com/users/DrPrime01/repos?page=${currentPage}&per_page=${numberOfResults}`;
 
   useEffect(() => {
     setLoadings(true);
@@ -30,7 +30,14 @@ function Repositories() {
         setRepoList(data);
         setLoadings(false);
       });
-  }, [currentPage]);
+      fetch(repo)
+        .then(res => res.json())
+        .then(data => {
+          const datalength = data.length;
+          setMaxNumberOfPages(() => datalength / numberOfResults);
+          console.log(maxNumberOfPages)
+        })
+  }, [currentPage, maxNumberOfPages]);
 
   const repos = repoList.map((repo) => {
     return (

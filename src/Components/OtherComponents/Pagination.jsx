@@ -22,6 +22,7 @@ function Pagination({
   useEffect(() => {
     console.log(activeBtnNumber)
     change(() => activeBtnNumber);
+    console.log(maxNumberOfPages)
   }, [activeBtnNumber])
 
   const initialState = {
@@ -93,7 +94,6 @@ function Pagination({
         className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 paginationBtn"
         id="prev"
         onClick={handlePrev}
-        disabled={state.disableBtn}
       >
         Prev
       </button>
@@ -122,7 +122,6 @@ function Pagination({
         className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 paginationBtn"
         id="next"
         onClick={handleNext}
-        disabled={state.disableBtn}
       >
         Next
       </button>
