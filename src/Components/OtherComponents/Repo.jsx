@@ -6,9 +6,9 @@ import StarComponent from "./StarComponent";
 function Repo({ name, link, language, created_at, stars, id, data }) {
   return (
     <>
-      <div className="flex flex-row mb-10 items-center justify-between max-h-full">
+      <div className="flex flex-row mb-10 items-center justify-between max-h-full md:ml-3">
         <div className="w-1/2 flex flex-col max-h-60 h-48 justify-self-center justify-between">
-          <h3 className="text-5xl text-black xs:text-4xl font-bold capitalize mb-8">
+          <h3 className="text-5xl text-black xs:text-3xl font-bold capitalize mb-8 md:text-3xl">
             <Link to={`/repositories/${id}`} state={data}>
               {name}
             </Link>

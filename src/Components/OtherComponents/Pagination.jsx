@@ -1,5 +1,5 @@
 import React from "react";
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 
 function Pagination({
   maxNumberOfPages,
@@ -8,17 +8,24 @@ function Pagination({
   change,
 }) {
   const [currentPageX, setCurrentPageX] = useState(currentPage);
-  let activeBtn = "";
-  let activeBtnNumber = "";
+  
+  const [activeBtnNumber, setActiveBtnNumber] = useState(null);
+
   //function to get the number of a clicked btn and set the value to activeBtnNumber's value
   const paginationBtns = document.querySelectorAll(".numPaginationBtn");
   paginationBtns.forEach((paginationBtn) => {
     paginationBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      activeBtn = e.target;
-      activeBtnNumber = parseInt(activeBtn.textContent);
+      const target = e.target.textContent;
+      const parsed = parseInt(target)
+      setActiveBtnNumber(parsed);
     });
   });
+
+  useEffect(() => {
+    console.log(activeBtnNumber)
+  }, [activeBtnNumber])
+
   const initialState = {
     minPageBtn: 1,
     midPageBtn: 2,
@@ -31,7 +38,7 @@ function Pagination({
     switch (action.type) {
       case "next": {
         if (currentPageX < maxNumberOfPages) {
-          setCurrentPageX(currentPageX + 1);
+          setCurrentPageX(prev => prev + 1);
           return {
             ...state,
             minPageBtn: state.minPageBtn + 1,
@@ -47,7 +54,7 @@ function Pagination({
       }
       case "prev": {
         if (currentPageX > minNumberOfPages) {
-          setCurrentPageX(currentPageX - 1);
+          setCurrentPageX(prev => prev - 1);
           return {
             ...state,
             minPageBtn: state.minPageBtn - 1,
@@ -71,19 +78,20 @@ function Pagination({
   function handleNext(e) {
     e.preventDefault();
     dispatch({ type: "next" });
-    change(currentPageX);
+    change(()=> currentPageX);
     console.log(currentPageX);
   }
   function handlePrev(e) {
     e.preventDefault();
     dispatch({ type: "prev" });
-    change(currentPageX);
+    change(()=> currentPageX);
     console.log(currentPageX);
   }
   function handleClick(e) {
     e.preventDefault();
+    console.log(activeBtnNumber)
     setCurrentPageX(activeBtnNumber);
-    change(currentPageX);
+    change(() => currentPageX);
     console.log(currentPageX);
   }
   return (
@@ -95,7 +103,7 @@ function Pagination({
         className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 paginationBtn"
         id="prev"
         onClick={handlePrev}
-        aria-disabled={state.disableBtn}
+        disabled={state.disableBtn}
       >
         Prev
       </button>
@@ -124,7 +132,7 @@ function Pagination({
         className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 paginationBtn"
         id="next"
         onClick={handleNext}
-        aria-disabled={state.disableBtn}
+        disabled={state.disableBtn}
       >
         Next
       </button>
