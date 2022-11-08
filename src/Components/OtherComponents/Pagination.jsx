@@ -9,7 +9,7 @@ function Pagination({
 }) {
   const [currentPageX, setCurrentPageX] = useState(currentPage);
   
-  const [activeBtnNumber, setActiveBtnNumber] = useState(null);
+  const [activeBtnNumber, setActiveBtnNumber] = useState(1);
 
   //function to get the number of a clicked btn and set the value to activeBtnNumber's value
   const paginationBtns = document.querySelectorAll(".numPaginationBtn");
@@ -24,6 +24,9 @@ function Pagination({
 
   useEffect(() => {
     console.log(activeBtnNumber)
+    setCurrentPageX(activeBtnNumber);
+    console.log(currentPageX)
+    change(() => activeBtnNumber);
   }, [activeBtnNumber])
 
   const initialState = {
@@ -87,13 +90,11 @@ function Pagination({
     change(()=> currentPageX);
     console.log(currentPageX);
   }
-  function handleClick(e) {
-    e.preventDefault();
-    console.log(activeBtnNumber)
-    setCurrentPageX(activeBtnNumber);
-    change(() => currentPageX);
-    console.log(currentPageX);
-  }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   console.log(activeBtnNumber)
+  //   console.log(currentPageX);
+  // }
   return (
     <div
       id="pager"
@@ -110,21 +111,21 @@ function Pagination({
       <button
         className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 numPaginationBtn"
         id="minbtn"
-        onClick={handleClick}
+        
       >
         {state.minPageBtn}
       </button>
       <button
         className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 numPaginationBtn"
         id="midbtn"
-        onClick={handleClick}
+        
       >
         {state.midPageBtn}
       </button>
       <button
         className="text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-900 focus:outline-none dark:focus:ring-gray-800 numPaginationBtn"
         id="maxbtn"
-        onClick={handleClick}
+        
       >
         {state.maxPageBtn}
       </button>
