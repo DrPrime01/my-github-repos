@@ -4,13 +4,10 @@ import { useReducer, useState, useEffect } from "react";
 function Pagination({
   maxNumberOfPages,
   minNumberOfPages,
-  currentPage,
   change,
 }) {
-  const [currentPageX, setCurrentPageX] = useState(currentPage);
   
   const [activeBtnNumber, setActiveBtnNumber] = useState(1);
-
   //function to get the number of a clicked btn and set the value to activeBtnNumber's value
   const paginationBtns = document.querySelectorAll(".numPaginationBtn");
   paginationBtns.forEach((paginationBtn) => {
@@ -24,8 +21,6 @@ function Pagination({
 
   useEffect(() => {
     console.log(activeBtnNumber)
-    setCurrentPageX(activeBtnNumber);
-    console.log(currentPageX)
     change(() => activeBtnNumber);
   }, [activeBtnNumber])
 
@@ -40,8 +35,8 @@ function Pagination({
   function reducer(state, action) {
     switch (action.type) {
       case "next": {
-        if (currentPageX < maxNumberOfPages) {
-          setCurrentPageX(prev => prev + 1);
+        if (activeBtnNumber < maxNumberOfPages) {
+          setActiveBtnNumber(prev => prev + 1);
           return {
             ...state,
             minPageBtn: state.minPageBtn + 1,
@@ -56,8 +51,8 @@ function Pagination({
         }
       }
       case "prev": {
-        if (currentPageX > minNumberOfPages) {
-          setCurrentPageX(prev => prev - 1);
+        if (activeBtnNumber > minNumberOfPages) {
+          setActiveBtnNumber(prev => prev - 1);
           return {
             ...state,
             minPageBtn: state.minPageBtn - 1,
@@ -65,7 +60,7 @@ function Pagination({
             midPageBtn: state.midPageBtn - 1,
           };
         } else {
-          setCurrentPageX(1);
+          setActiveBtnNumber(1);
           return {
             ...state,
             disableBtn: true,
@@ -81,20 +76,14 @@ function Pagination({
   function handleNext(e) {
     e.preventDefault();
     dispatch({ type: "next" });
-    change(()=> currentPageX);
-    console.log(currentPageX);
+    change(()=> activeBtnNumber);
   }
   function handlePrev(e) {
     e.preventDefault();
     dispatch({ type: "prev" });
-    change(()=> currentPageX);
-    console.log(currentPageX);
+    change(()=> activeBtnNumber);
   }
-  // function handleClick(e) {
-  //   e.preventDefault();
-  //   console.log(activeBtnNumber)
-  //   console.log(currentPageX);
-  // }
+ 
   return (
     <div
       id="pager"

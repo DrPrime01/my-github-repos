@@ -13,7 +13,7 @@ function SingleRepo() {
   function checkHomePageLink(homepage) {
     const linkPrefix = "https://";
     const homepageList = homepage.split();
-    if (homepageList[(0, 1, 2, 3, 4)] === ["h", "t", "t", "p", "s"]) {
+    if (homepageList[0, 1, 2, 3, 4] == ["h", "t", "t", "p", "s"]) {
       setHomepageLink(homepageList.join());
     } else {
       setHomepageLink(`${linkPrefix}${homepageList.join()}`);

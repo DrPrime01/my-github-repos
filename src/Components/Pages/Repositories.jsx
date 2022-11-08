@@ -12,7 +12,7 @@ function Repositories() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const numberOfResults = 5;
-  const maxNumberOfPages = repoURL.length;
+  const maxNumberOfPages = Math.ceil(repoURL.length / numberOfResults);
   const minNumberOfPages = 1;
   const [repoList, setRepoList] = useState([]);
   const [loadings, setLoadings] = useState(false);
@@ -22,13 +22,16 @@ function Repositories() {
   useEffect(() => {
     setLoadings(true);
     fetch(repoURL)
-      .then((res) => res.json(), (error) => handleError(error))
+      .then(
+        (res) => res.json(),
+        (error) => handleError(error)
+      )
       .then((data) => {
         setRepoList(data);
-        setLoadings(false)
+        setLoadings(false);
       });
   }, [currentPage]);
-  
+
   const repos = repoList.map((repo) => {
     return (
       <Repo
@@ -48,15 +51,17 @@ function Repositories() {
       <div id="profile" className="w-1/4 xs:w-auto xs:mb-8">
         {loadings ? <Loading type="spin" color="gray" /> : <Profile />}
       </div>
-      <div id="repo-pagination" className="flex flex-col w-3/5 xs:w-auto xs:items-center">
+      <div
+        id="repo-pagination"
+        className="flex flex-col w-3/5 xs:w-auto xs:items-center"
+      >
         <div id="repo" className="mb-5">
-        {loadings ? <Loading type="spin" color="gray" /> : repos}
+          {loadings ? <Loading type="spin" color="gray" /> : repos}
         </div>
         <div id="pagination" className="px-4">
           <Pagination
             minNumberOfPages={minNumberOfPages}
             maxNumberOfPages={maxNumberOfPages}
-            currentPage={currentPage}
             change={setCurrentPage}
           />
         </div>
@@ -70,7 +75,7 @@ function RepositoriesWithErrorBoundary() {
     <ErrorBoundary FallbackComponent={<div>Error</div>}>
       <Repositories />
     </ErrorBoundary>
-  )
+  );
 }
 
 export default RepositoriesWithErrorBoundary;
