@@ -11,17 +11,13 @@ function Repositories() {
   const handleError = useErrorHandler();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const numberOfResults = 5;
+  const reposPerPage = 5;
   const [repoList, setRepoList] = useState([]);
   const [loadings, setLoadings] = useState(false);
-  const minNumberOfPages = 1;
-  const [maxNumberOfPages, setMaxNumberOfPages] = useState(0);
-
-  const repoURL = `https://api.github.com/users/DrPrime01/repos?page=${currentPage}&per_page=${numberOfResults}`;
 
   useEffect(() => {
     setLoadings(true);
-    fetch(repoURL)
+    fetch(repo)
       .then(
         (res) => res.json(),
         (error) => handleError(error)
@@ -30,16 +26,14 @@ function Repositories() {
         setRepoList(data);
         setLoadings(false);
       });
-      fetch(repo)
-        .then(res => res.json())
-        .then(data => {
-          const datalength = data.length;
-          setMaxNumberOfPages(() => datalength / numberOfResults);
-          console.log(maxNumberOfPages)
-        })
-  }, [currentPage, maxNumberOfPages]);
+  }, [currentPage]);
 
-  const repos = repoList.map((repo) => {
+  //other factors
+  const indexOfLastRepo = reposPerPage * currentPage
+  const indexOfFirstRepo = indexOfLastRepo - reposPerPage;
+  const currentRepos = repoList.slice(indexOfFirstRepo, indexOfLastRepo)
+
+  const repos = currentRepos.map((repo) => {
     return (
       <Repo
         name={repo.name}
@@ -53,6 +47,9 @@ function Repositories() {
       />
     );
   });
+
+  //changepage function
+  const changePage = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <div className="flex flex-row justify-between xs:flex-col p-12 xs:p-6 xs:items-center">
       <div id="profile" className="w-1/4 xs:w-auto xs:mb-8">
@@ -67,10 +64,9 @@ function Repositories() {
         </div>
         <div id="pagination" className="px-4">
           <Pagination
-            minNumberOfPages={minNumberOfPages}
-            maxNumberOfPages={maxNumberOfPages}
-            change={setCurrentPage}
-          />
+            totalPages={repoList.length}
+            reposPerPage={reposPerPage}
+            changePage={changePage}          />
         </div>
       </div>
     </div>
