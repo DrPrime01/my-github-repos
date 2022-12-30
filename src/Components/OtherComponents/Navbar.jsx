@@ -47,7 +47,7 @@ function Navbar() {
           </svg>
         </button>
         <div className={`w-full md:block md:w-auto ${toggleNavbar ? 'display' : 'hidden'}`} id="navbar-default">
-          <ul className="flex flex-col items-end p-4 mt-4 bg-[#060A13] rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-[#060A13] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col items-end p-4 mt-4 bg-[#060A13] rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-[#060A13]">
             <li>
               <NavLink
                 to="/"

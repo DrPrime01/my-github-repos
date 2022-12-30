@@ -8,7 +8,6 @@ import ErrorBoundary from "../OtherComponents/ErrorBoundary";
 
 function Repositories() {
   const repo = `https://api.github.com/users/DrPrime01/repos`;
-  const handleError = useErrorHandler();
 
   const [currentPage, setCurrentPage] = useState(1);
   const reposPerPage = 5;
