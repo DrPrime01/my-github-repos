@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Profile from "../OtherComponents/Profile";
 import Repo from "../OtherComponents/Repo";
 import Loading from "../OtherComponents/Loading";
-import { ErrorBoundary, useErrorHandler } from "react-error-boundary";
+import ErrorBoundary from "../OtherComponents/ErrorBoundary";
 
 function Repositories() {
   const repo = `https://api.github.com/users/DrPrime01/repos`;
@@ -75,7 +75,7 @@ function Repositories() {
 
 function RepositoriesWithErrorBoundary() {
   return (
-    <ErrorBoundary FallbackComponent={<div>Error</div>}>
+    <ErrorBoundary>
       <Repositories />
     </ErrorBoundary>
   );
